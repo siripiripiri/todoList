@@ -39,27 +39,32 @@ export default function App() {
   <>
   <form onSubmit={handleSubmit} className="mainForm">
     <div className="form-row">
-      <label htmlFor="item" >New Item</label>
-      <input value={newItem} 
+
+      <label id='top' htmlFor="item" >To-do List</label>
+      <input value={newItem} placeholder="New Item"
       onChange={e => setNewItem(e.target.value)} 
       type="text" id="item"/>
     </div>
     <button className="btn">Add</button>
   </form>
-  <h1 className="headTitle">To-do List</h1>
+  <h1 className="headTitle">To-dos</h1>
+  <div className="container">
   <ul className="list">
     {todos.length ===0 && "No Todos."}
     {todos.map(todo =>{
       return <li key={todo.id}>
-      <label>
+        <div className="listContainer">
+      <label className="listItemName">
         <input type="checkbox" className="checkb" checked={todo.completed}
         onChange={e => toggleTodo(todo.id, e.target.checked)}
         />
         {todo.title}
       </label>
       <button onClick={()=> deleteTodo(todo.id)} className="del-btn">Delete</button>
+      </div>
     </li>
     })}
   </ul>
+  </div>
   </>
 )}
